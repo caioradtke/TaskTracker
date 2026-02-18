@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 public class TaskList
 {
     private ArrayList<Task> tasks = new ArrayList<>();
+    static Scanner s = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner s = new Scanner(System.in);
         TaskList tasklist = new TaskList();
         while (true) {
         String input = s.next();
@@ -16,25 +16,39 @@ public class TaskList
     }
 
     private void handler(String input){
-        String [] parts = input.split(" ", 2);
 
-        switch (parts[0]) {
-            case "add":
+        input = s.nextLine();
+        int count = 0;
+
+         if (input.startsWith("add")) {
                 addTask(input);
-                break;
-        
-            default:
-                break;
+                System.out.println("Task added successfully (ID:" +tasks.get(count)+ ")" );
+                ++count;
         }
+
+        if (input.startsWith("delete")) {
+            deleteTask();
+        }
+
 
     }
     
     public void addTask(String description){
         Task task = new Task(description);
         tasks.add(task);
+        
     }
 
     public void updateTask(int id,String description){
         tasks.get(id).setDescription(description);
+    }
+
+    public void deleteTask(int id) {
+        tasks.remove(tasks.get(id));
+    }
+
+    public void updateStatus(String status, int id)
+    {
+
     }
 }
