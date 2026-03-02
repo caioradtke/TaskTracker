@@ -18,19 +18,28 @@ public class TaskList
     private void handler(String input){
 
         input = s.nextLine();
+        String[] parts = input.split(" ", 3);
         int count = 0;
+        String command = parts[0];
 
-         if (input.startsWith("add")) {
-                addTask(input);
+        switch (command) {
+            case "add":
+                addTask(parts[1]);
                 System.out.println("Task added successfully (ID:" +tasks.get(count)+ ")" );
                 ++count;
+                break;
+        
+            case "delete":
+                int id = Integer.parseInt(parts[1]);
+                deleteTask(id);
+
+            case "update":
+                int id = Integer.parseInt(parts[1]);
+                
+
+            default:
+                break;
         }
-
-        if (input.startsWith("delete")) {
-            deleteTask();
-        }
-
-
     }
     
     public void addTask(String description){
