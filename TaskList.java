@@ -14,14 +14,13 @@ public class TaskList {
         }
     }
 
-    private void handler(String input) {
+    public void handler(String input) {
 
         input = s.nextLine();
         String[] parts = input.split(" ", 3);
         int count = 0;
         String command = parts[0];
-        int id = Integer.parseInt(parts[1]);
-
+        
         switch (command) {
 
             case "add":
@@ -31,19 +30,23 @@ public class TaskList {
                 break;
 
             case "delete":
-                deleteTask(id);
+                int deleteId = Integer.parseInt(parts[1]);
+                deleteTask(deleteId);
                 break;
 
             case "update":
-                updateTask(id, command);
+                int updateId = Integer.parseInt(parts[1]);
+                updateTask(updateId, command);
                 break;
 
             case "mark-in-progress":
-                updateStatus(command, id);
+                int mpId = Integer.parseInt(parts[1]);
+                updateStatus(command, mpId);
                 break;
 
             case "mark-done":
-                updateStatus(command, id);
+                int mkId = Integer.parseInt(parts[1]);
+                updateStatus(command, mkId);
                 break;
 
             case "list":
