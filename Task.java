@@ -9,6 +9,7 @@ public class Task {
 
     public  Task (String description) {
         this.description = description;
+        this.status = "todo";
     }
 
     public void setDescription (String description)
@@ -23,6 +24,10 @@ public class Task {
     public void setStatus (String status)
     {
         this.status = status;
+    }
+
+    public String getStatus () {
+        return status;
     }
     
 }
