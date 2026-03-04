@@ -6,17 +6,8 @@ public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>();
     static Scanner s = new Scanner(System.in);
 
-    public static void main(String[] args) {
-        TaskList tasklist = new TaskList();
-        while (true) {
-            String input = s.next();
-            tasklist.handler(input);
-        }
-    }
-
     public void handler(String input) {
 
-        input = s.nextLine();
         String[] parts = input.split(" ", 3);
         int count = 0;
         String command = parts[0];
@@ -25,7 +16,7 @@ public class TaskList {
 
             case "add":
                 addTask(parts[1]);
-                System.out.println("Task added successfully (ID:" + tasks.get(count) + ")");
+                System.out.println("Task added successfully (ID:" + count + ")");
                 ++count;
                 break;
 
@@ -36,7 +27,7 @@ public class TaskList {
 
             case "update":
                 int updateId = Integer.parseInt(parts[1]);
-                updateTask(updateId, command);
+                updateTask(updateId, parts[2]);
                 break;
 
             case "mark-in-progress":
@@ -50,16 +41,7 @@ public class TaskList {
                 break;
 
             case "list":
-                switch (parts[1]) {
-
-                    case "done":
-
-                        break;
-
-                    default:
-                        listTasks();
-                        break;
-                }
+                listTasks();
 
             default:
                 break;
@@ -77,7 +59,7 @@ public class TaskList {
     }
 
     public void deleteTask(int id) {
-        tasks.remove(tasks.get(id));
+        tasks.remove(id);
     }
 
     public void updateStatus(String status, int id) {
@@ -86,7 +68,7 @@ public class TaskList {
 
     public void listTasks() {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println("ID: " + i + " - " + tasks.get(i));
+            System.out.println("ID: " + i + " - " + tasks.get(i).getDescription());
         }
     }
 
@@ -94,13 +76,13 @@ public class TaskList {
         if(status.equals("done")){
             for (int i = 0; i < tasks.size(); i++) {
                 if (tasks.get(i).getStatus().equals("done")){}
-                System.out.println("ID: " + i + " - " + tasks.get(i));
+                System.out.println("ID: " + i + " - " + tasks.get(i).getDescription());
             }
         }
         else if (status.equals("todo")) {
             for (int i = 0; i < tasks.size(); i++) {
                 if (tasks.get(i).getStatus().equals("todo")){}
-                System.out.println("ID: " + i + " - " + tasks.get(i));
+                System.out.println("ID: " + i + " - " + tasks.get(i).getDescription());
             }
         }
 
